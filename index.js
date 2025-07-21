@@ -1,20 +1,23 @@
-const inputItem = document.getElementById("input-item")
+const inputItem = document.getElementById("input-item");
 const listaDeCompras = document.getElementById("lista-de-compras");
 const botaoAdicionar = document.getElementById("adicionar-item");
 
-let contador = 0; // Variável que vai trocar de valor
+let contador = 0; // Variável que vai trocar de valor, vai incrementar o valor
 
 botaoAdicionar.addEventListener("click", (evento) => {
-    evento.preventDefault(); // Previne o comportamento padrão do botão
-    console.log(inputItem.value);
+    evento.preventDefault(); // Previne o comportamento padrão do botão ideal pra previnir envio de formulario se tiver algum erro
+    if (inputItem.value === "") {
+        alert("Por favor, insira um item!")
+        return
+    }
 
-    const itemDaLista = document.createElement("li"); 
+    const itemDaLista = document.createElement("li");
     const containerItemDaLista = document.createElement("div");
     containerItemDaLista.classList.add("lista-item-container");
     const inputCheckbox = document.createElement("input");
-    inputCheckbox.type = "checkbox";
+    inputCheckbox.type = "checkbox"
     inputCheckbox.id = "checkbox-" + contador++;
-    const nomeItem = document.createElement("div");
+    const nomeItem = document.createElement("p");
     nomeItem.innerText = inputItem.value;
 
     containerItemDaLista.appendChild(inputCheckbox);
@@ -23,7 +26,14 @@ botaoAdicionar.addEventListener("click", (evento) => {
     itemDaLista.appendChild(containerItemDaLista);
     listaDeCompras.appendChild(itemDaLista);
 
-});
+    const diaDaSemana = new Date().toLocaleDateString("pt-BR", {
+        weekday: "long"
+     });
+    
+     console.log(diaDaSemana);
+
+})
+
 
 
 
